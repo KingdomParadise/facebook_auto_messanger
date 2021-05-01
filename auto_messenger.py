@@ -52,11 +52,6 @@ sender = driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/d
 sender.click()
 
 
-
-
-
-
-
 total_received_messages = 0
 loop_counter=0
 
