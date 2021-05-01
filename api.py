@@ -7,11 +7,11 @@ def SERVER_MESSAGE(sender,message):
         "message":str(message)
     })
     data_received = requests.post(url, data=data,headers={"Content-Type":"application/json"})
-    received_messages = json.dumps([x['text'] for x in data_received.json()])
-    print(received_messages) 
+    received_messages = json.dumps(" ".join([x['text'] for x in data_received.json()]))
+    # print(received_messages) 
     return(received_messages)
 
 if __name__ == "__main__":
-    SERVER_MESSAGE('123','HELLO')
+    print(json.loads(SERVER_MESSAGE("123",str("hello"))))
 
  

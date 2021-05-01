@@ -71,56 +71,52 @@ def CHATTER():
     
     time.sleep(5)
     
-    print("Grabbing Chat Container ...")
-    try:
-        chat_container = driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div[2]/div/div/div/div[1]/div[1]/div/div/div[3]')
-        chats=chat_container.get_attribute('innerHTML')
+    print("Grabbing Chat Container ...") 
+    chat_container = driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div[2]/div/div/div/div[1]/div[1]/div/div/div[3]')
+    chats=chat_container.get_attribute('innerHTML')
 
-        me ="ljqsnud1"
-        friend="oo9gr5id"
-        # we have to read friend mesage
-        print("Making soup ....")
-        soup = BeautifulSoup(chats, 'lxml') 
-        received_messages = soup.select('div.oo9gr5id')
-        print("Comparing the Results ...")
-        print("Comaprison Result "+str(total_received_messages)+"_____"+str(len(received_messages))) 
-        if total_received_messages<len(received_messages):
-            
-            # INITILIZATION OF CHAT BY BOT
-            print("Sending new mesage ... ")
-            
-            [x for x in json.loads(SERVER_MESSAGE("123","hello"))] 
-            
-            DATA_RECEIVED = [x for x in json.loads(SERVER_MESSAGE("123",str(received_messages[-1].text)))] 
-            for message in DATA_RECEIVED:
-                total_received_messages=len(received_messages)
-                time.sleep(2)
-                textAreaElem = driver.find_element_by_xpath("/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div[2]/div/div/div/div[2]/div/form/div/div[3]/div[2]/div[1]/div/div/div/div/div[2]/div/div/div")
-                def deEmojify(text):
-                    regrex_pattern = re.compile(pattern = "["
-                        u"\U0001F600-\U0001F64F"  # emoticons
-                        u"\U0001F300-\U0001F5FF"  # symbols & pictographs
-                        u"\U0001F680-\U0001F6FF"  # transport & map symbols
-                        u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
-                        "]+", flags = re.UNICODE)
-                    return regrex_pattern.sub(r'',text)
-                message = deEmojify(message)  
-                textAreaElem.send_keys(str(message))
-                time.sleep(2)
-                sender = driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div[2]/div/div/div/div[2]/div/form/div/div[3]/span[2]/div')
-                sender.click()
-            print ("Loop again Started ... new message", )
-            CHATTER()
-        time.sleep(2) 
-        CHATTER()    
-    except:
-        driver.get('https://web.facebook.com/messages/t/{}'.format(TARGET_PROFILE_ID))
-        time.sleep(10)
-        CHATTER()    
+    me ="ljqsnud1"
+    friend="oo9gr5id"
+    # we have to read friend mesage
+    print("Making soup ....")
+    soup = BeautifulSoup(chats, 'lxml') 
+    received_messages = soup.select('div.oo9gr5id')
+    print("Comparing the Results ...")
+    print("Comaprison Result "+str(total_received_messages)+"_____"+str(len(received_messages))) 
+    if total_received_messages<len(received_messages):
+        
+        # INITILIZATION OF CHAT BY BOT
+        print("Sending new mesage ... ")
+        
+        [x for x in json.loads(SERVER_MESSAGE("123","hello"))] 
+        
+        DATA_RECEIVED = json.loads(SERVER_MESSAGE("123",str(received_messages[-1].text)))
+        total_received_messages=len(received_messages)
+        time.sleep(2)
+        textAreaElem = driver.find_element_by_xpath("/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div[2]/div/div/div/div[2]/div/form/div/div[3]/div[2]/div[1]/div/div/div/div/div[2]/div/div/div")
+        def deEmojify(text):
+            regrex_pattern = re.compile(pattern = "["
+                u"\U0001F600-\U0001F64F"  # emoticons
+                u"\U0001F300-\U0001F5FF"  # symbols & pictographs
+                u"\U0001F680-\U0001F6FF"  # transport & map symbols
+                u"\U0001F1E0-\U0001F1FF"  # flags (iOS)
+                "]+", flags = re.UNICODE)
+            return regrex_pattern.sub(r'',text)
+        DATA_RECEIVED = deEmojify(DATA_RECEIVED
+                                  )  
+        textAreaElem.send_keys(str(DATA_RECEIVED))
+        time.sleep(2)
+        sender = driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div[2]/div/div/div/div[2]/div/form/div/div[3]/span[2]/div')
+        sender.click()
+        print ("Loop again Started ... new message", )
+        CHATTER()
+    time.sleep(2) 
+    CHATTER()      
         
 CHATTER()
 
 
 
 
-# 100055137043960
+# 100055137043960 
+# 100065878639306
