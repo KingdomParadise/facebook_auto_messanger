@@ -81,7 +81,7 @@ def CHATTER():
         # we have to read friend mesage
         print("Making soup ....")
         soup = BeautifulSoup(chats, 'lxml') 
-        SS = soup.select('div.oo9gr5id')
+        received_messages = soup.select('div.oo9gr5id')
         print("Comparing the Results ...")
         print("Comaprison Result "+str(total_received_messages)+"_____"+str(len(received_messages))) 
         if total_received_messages<len(received_messages):
