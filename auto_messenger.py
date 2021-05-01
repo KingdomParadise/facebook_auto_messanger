@@ -67,6 +67,8 @@ def CHATTER():
     time.sleep(5)
     
     print("Grabbing Chat Container ...") 
+    textAreaElem = driver.find_element_by_xpath("/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div[2]/div/div/div/div[2]/div/form/div/div[3]/div[2]/div[1]/div/div/div/div/div[2]/div/div/div")
+
     chat_container = driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div[2]/div/div/div/div[1]/div[1]/div/div/div[3]')
     chats=chat_container.get_attribute('innerHTML')
 
@@ -82,8 +84,7 @@ def CHATTER():
         
         # INITILIZATION OF CHAT BY BOT
         print("Sending new mesage ... ")
-        
-        [x for x in json.loads(SERVER_MESSAGE("123","hello"))] 
+         
         
         DATA_RECEIVED = json.loads(SERVER_MESSAGE("123",str(received_messages[-1].text)))
         total_received_messages=len(received_messages)
