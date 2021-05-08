@@ -12,6 +12,6 @@ def SERVER_MESSAGE(sender,message):
     return(received_messages)
 
 if __name__ == "__main__":
-    print(json.loads(SERVER_MESSAGE("123",str("I need a car myself"))))
+    print(json.loads(SERVER_MESSAGE("123",str("I don't know"))))
 
  
