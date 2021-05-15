@@ -10,18 +10,15 @@ from api import SERVER_MESSAGE
 
 IDLIST = []
 
- 
 
 with open('contact_ids.csv', 'r') as file:
     reader = csv.reader(file)
     for index, row in enumerate(reader):
         if index>0:
             IDLIST.append(row[0])
-            
-
-
-
-
+#with open('fresh_fetched_contacts.txt', 'r') as file:
+#    for line in file.readlines():
+#        IDLIST.append(str(line).strip())
 
 MESSAGES_LOG=[ {"id":x,"sessional_len":0,"init_messgae_handler":0} for x in IDLIST]
 chrome_options = Options()
@@ -55,11 +52,6 @@ else:
     print("Logging in ...")
     time.sleep(15)
 
-
- 
-
- 
-
 while True:
 
     for index,TARGETCHATID in enumerate(IDLIST):
@@ -68,12 +60,7 @@ while True:
         driver.get('https://web.facebook.com/messages/t/{}?_rdc=1&_rdr'.format(TARGETCHATID))
         print("Messenger Loaded ... ")
         time.sleep(40)
-        
-        
-        
-        
-
-        
+                          
         # INITILIZATION OF CHAT BY BOT
         print("INITILIZATION OF CHAT BY BOT")
         time.sleep(2)
