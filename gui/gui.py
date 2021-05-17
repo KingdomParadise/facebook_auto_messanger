@@ -171,7 +171,8 @@ class Toplevel1:
         self.style.map('.',background=
             [('selected', _compcolor), ('active',_ana2color)])
 
-        top.geometry("928x542+-1131+87")
+        top.geometry("928x542")
+        # top.geometry("928x542+-1131+87")
         top.minsize(120, 1)
         top.maxsize(2650, 1005)
         top.resizable(0,  0)
@@ -217,8 +218,8 @@ class Toplevel1:
         self.Labelframe2_1.configure(highlightbackground="#d9d9d9")
         self.Labelframe2_1.configure(highlightcolor="black")
 
-        # self.passwordfield = ttk.Entry(self.Labelframe2_1,show="*",font=("-family {Segoe UI} -size 13"))
-        self.passwordfield = ttk.Entry(self.Labelframe2_1,font=("-family {Segoe UI} -size 13"))
+        self.passwordfield = ttk.Entry(self.Labelframe2_1,show="*",font=("-family {Segoe UI} -size 13"))
+        # self.passwordfield = ttk.Entry(self.Labelframe2_1,font=("-family {Segoe UI} -size 13"))
         self.passwordfield.place(relx=0.013, rely=0.292, relheight=0.569
                 , relwidth=0.974, bordermode='ignore')
         self.passwordfield.configure(takefocus="")

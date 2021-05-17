@@ -193,9 +193,9 @@ def BOT_THREAD_STARTER(driver,EMAILID,PASSWORD,your_id,minimum_contacts,max_wait
                         log['sessional_len'] = SESSIONAL_LEN
                 print(MESSAGES_LOG)
                 uindex=index
-            if int(uindex)==(len(IDLIST)-1):
-                driver.quit()
-                break
+            # if int(uindex)==(len(IDLIST)-1):
+            #     driver.quit()
+            #     break
         return True
     except Exception as e:
         print(e)
