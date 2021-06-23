@@ -97,8 +97,10 @@ def BOT_THREAD_STARTER(driver,EMAILID,PASSWORD,your_id,minimum_contacts,max_wait
                             print(whosentlastmsg)
                             print(hasclientreplied) 
                             print("-"*20)
-
+                            print('//'*30)
                             print(mymsgs)
+                            print(allmsgs)
+                            print('//'*30)
 
                             
                             if 'bye' in mymsgs[-1][0].lower():
@@ -114,12 +116,14 @@ def BOT_THREAD_STARTER(driver,EMAILID,PASSWORD,your_id,minimum_contacts,max_wait
 
 
                             if len(clientmsgs)==0 and  len(mymsgs)==1:
+                                time.sleep(2)
                                 print("Sending hello message")
                                 textAreaElem = driver.find_element_by_xpath("/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div[2]/div/div/div/div[2]/div/form/div/div[3]/div[2]/div[1]/div/div/div/div/div[2]/div/div/div")
                                 try: 
                                     for char in str(HELLO_MESSAGE):
                                         textAreaElem.send_keys(str(char))
                                         time.sleep(0.05)
+                                    time.sleep(2)
                                     time.sleep(2)
                                     sender = driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/div[3]/div/div/div[1]/div[1]/div[2]/div/div/div/div/div/div[1]/div[2]/div/div/div/div[2]/div/form/div/div[3]/span[2]/div')
                                     sender.click() 
@@ -145,8 +149,23 @@ def BOT_THREAD_STARTER(driver,EMAILID,PASSWORD,your_id,minimum_contacts,max_wait
 
                             elif whosentlastmsg=='client':
                                 lastmsgtext = allmsgs[-1][0]
-                                print(f"-->> API CALL for ( {lastmsgtext} )")
-                                msg = SERVER_MESSAGE(str("unknown"),str(lastmsgtext))
+                                
+                                
+                                mymsgs =  mymsgs[-1]
+                                last_occurance = [index for index,msg in enumerate(allmsgs)  if msg[-1][0]==mclass]
+                                if len(last_occurance)>1:last_occurance=last_occurance[-1]
+                                elif len(last_occurance)==1:last_occurance=last_occurance[0]
+                                elif len(last_occurance)==0:last_occurance=0
+                                client_last_messages = allmsgs[last_occurance+1:]
+                                required_client_message = client_last_messages[0][0]
+
+
+
+
+
+
+                                print(f"-->> API CALL for ( {required_client_message} )")
+                                msg = SERVER_MESSAGE(str("unknown"),str(required_client_message))
                                 print(f"-->> API Response ( {msg} )")
 
                                 if str(msg).startswith('"') and str(msg).endswith('"'):
